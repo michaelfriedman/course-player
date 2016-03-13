@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Pure Functions",
+    "content URI": "pure-functions-intro.md"
+  },
+  {
+    "title": "Modifying Objects With Pure Functions",
+    "type": "javascript-exercise",
+    "content": "Write a pure function called `setPrice()` that takes an item object and a price and returns a new item object with the price property set, and all other properties unchanged. Signature: `setPrice(item: Object, price: Number) => item: Object`",
+    "test": "() => test('setPrice()',function(e){var t='setPrice() should not change the original item.',i={name:'test',price:30},s=Object.assign({},i);setPrice(i,50);var a=i;e.deepEqual(a,s,t)});"
+  },
+  {
+    "title": "Pure Array Mapping",
+    "type": "javascript-exercise",
+    "content": "Write a pure function called incAll which increments each number in the source array by one. Signature: `incAll(numbers: Number[]) => numbers: Number[]`",
+    "test": "test('incAll()',function(e){var l='incAll() should increment each num in array',n='original should not be mutated',i=[1,2,3],a=i.slice(),c=incAll(i),t=[2,3,4];e.deepEqual(c,t,l),e.deepEqual(i,a,n),e.end()});"
+  }
+]

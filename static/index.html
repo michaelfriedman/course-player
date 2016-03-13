@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exercise</title>
+  <style>
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+    html {
+      box-sizing: border-box;
+    }
+
+    .card {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 2rem;
+    }
+
+    .nav-bar {
+      display: flex;
+      width: 100%;
+      background: #eee;
+      padding: .25rem 2rem .25rem 2rem;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+    }
+    .nav-bar .course-title {
+      flex-grow: 1;
+    }
+
+
+    .nav-bar nav {
+      display: flex;
+      justify-content: center;
+    }
+
+    .content {
+      padding: 2rem 1rem .25rem 1rem;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="nav-bar">
+      <h1 class="course-title">Course Title</h1>
+      <nav>
+        <select>
+          <option selected="selected">Card 1</option>
+          <option>Card 2</option>
+          <option>Card 3</option>
+        </select>
+      </nav>
+    </div>
+    <div class="content">Card content here
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <div id="root" class="container"></div>
+
+  <script src="index.js"></script>
+</body>
+</html>
