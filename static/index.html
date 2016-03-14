@@ -8,9 +8,10 @@
     }
     html {
       box-sizing: border-box;
+      font-family: sans-serif;
     }
 
-    .card {
+    .card-player {
       max-width: 900px;
       margin-left: auto;
       margin-right: auto;
@@ -38,14 +39,28 @@
       justify-content: center;
     }
 
-    .content {
+    .card-content {
       padding: 2rem 1rem .25rem 1rem;
     }
+
+    .next-card {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-end;
+      align-content: center;
+    }
+    .next-card .spacer {
+      flex-grow: 1;
+    }
+
 
   </style>
 </head>
 <body>
-  <div class="card">
+  <!--
+  <div class="card-player">
     <div class="nav-bar">
       <h1 class="course-title">Course Title</h1>
       <nav>
@@ -56,13 +71,12 @@
         </select>
       </nav>
     </div>
-    <div class="content">Card content here
+    <div class="card-content"><p>Card content here</p>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     </div>
+    <div class="next-card"><div class="spacer"></div><button>Continue</button></div>
   </div>
-
-  <hr>
-
+  -->
   <div id="root" class="container"></div>
 
   <script src="index.js"></script>
