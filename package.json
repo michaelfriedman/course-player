@@ -6,9 +6,9 @@
   "scripts": {
     "start": "serve static",
     "build": "browserify source/index.js -o static/index.js -t [ babelify --presets [ es2015 react stage-2 ] ]",
-    "lint": "eslint source",
+    "lint": "eslint .",
     "test": "NODE_PATH=source babel-node source/test/index.js",
-    "watch": "watch 'clear && npm run -s lint && npm run -s test && npm run -s build' source"
+    "watch": "watch 'clear && npm run -s test && npm run -s build' source"
   },
   "repository": {
     "type": "git",
