@@ -1,6 +1,6 @@
 # Course Player
 
-A modular course navigation system.
+An online course presentation engine with React.
 
 * Video content
 * JavaScript code exercises
