@@ -10,11 +10,11 @@ export default React => ({ courseTitle, cardContent, isCompleted }) => (
         </select>
       </nav>
     </div>
-    <div className="card-content">{ cardContent}</div>
+    <div className="card-content">{ cardContent }</div>
     <div className="next-card">
       <div className="spacer"></div>
       <button className="button"
-        disabled={ isCompleted ? '' : 'disabled'}>Continue</button>
+        disabled={ isCompleted ? '' : 'disabled' }>Continue</button>
     </div>
   </div>
 );
