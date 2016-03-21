@@ -1,6 +1,4 @@
-const makeClasses = (...classes) => {
-  return classes.join(' ').trim();
-};
+const makeClasses = (...classes) => classes.join(' ').trim();
 
 export default React => {
 
