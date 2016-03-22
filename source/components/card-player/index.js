@@ -1,4 +1,4 @@
-const makeClasses = (...classes) => classes.join(' ').trim();
+const makeClasses = (...classes) => classes.filter(i => Boolean(i)).join(' ');
 
 export default React => {
 
