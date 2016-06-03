@@ -20,7 +20,10 @@ export default React => {
         <div className="card-content">{ cardContent }</div>
         <div className="next-card">
           <div className="spacer"></div>
-          <button className="button"
+          <button className={makeClasses(
+              'button btn',
+              isCompleted ? 'btn-success' : ''
+            )}
             disabled={ isCompleted ? '' : 'disabled' }>Continue</button>
         </div>
       </div>
