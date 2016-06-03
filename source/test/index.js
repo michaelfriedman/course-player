@@ -118,6 +118,23 @@ test('CardPlayer', nest => {
     assert.end();
   });
 
+  nest.test('...next-card btn class', assert => {
+    const msg = 'next-card should render the button class.';
+
+    const CardPlayer = cardPlayer(React);
+
+    const props = makeProps();
+
+    const $ = dom.load(render(<CardPlayer { ...props } />));
+    const output = $('.next-card .btn').attr('class');
+
+    const actual = (/btn/).test(output);
+    const expected = true;
+
+    assert.equal(actual, expected, msg);
+    assert.end();
+  });
+
   nest.test('...next-card', assert => {
     const msg = 'next-card should render a disabled button by default.';
 
@@ -147,6 +164,23 @@ test('CardPlayer', nest => {
 
     const actual = output;
     const expected = undefined;
+
+    assert.equal(actual, expected, msg);
+    assert.end();
+  });
+
+  nest.test('...next-card with card completed', assert => {
+    const msg = 'next-card should render the button success class.';
+
+    const CardPlayer = cardPlayer(React);
+
+    const props = makeProps({ isCompleted: true });
+
+    const $ = dom.load(render(<CardPlayer { ...props } />));
+    const output = $('.next-card .btn').attr('class');
+
+    const actual = (/btn-success/).test(output);
+    const expected = true;
 
     assert.equal(actual, expected, msg);
     assert.end();

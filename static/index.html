@@ -82,12 +82,15 @@
       border-bottom: none;
     }
 
-    .btn-success {
-      background-color: #2ecc71;
-      color: #fff;
+    .btn {
+      font-size: 1rem;
       text-decoration: none;
       padding: .594rem 1rem .594rem 1rem;
       border-radius: .25rem;
+    }
+    .btn-success {
+      background-color: #2ecc71;
+      color: #fff;
     }
     a[disabled] {
       pointer-events: none;
@@ -97,26 +100,6 @@
   </style>
 </head>
 <body>
-  <div class="card-player">
-    <div class="nav-bar">
-      <h1 class="course-title">Course Title</h1>
-    </div>
-    <div class="card-container">
-      <div class="card-content"><p>Card content here</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      </div>
-      <div class="next-card"><div class="spacer"></div>
-        <a href="#continue" class="btn btn-success">Continue</a>
-      </div>
-    </div>
-    <ul class="card-list">
-      <li class="card-list-item current-card">Card 1</li>
-      <li class="card-list-item">Card 2</li>
-      <li class="card-list-item">Card 3</li>
-    </ul>
-
-  </div>
-
   <div id="root" class="container"></div>
 
   <script src="index.js"></script>
