@@ -23,13 +23,16 @@ We'll need to maintain some state to keep track of which card decks and which ca
 ```js
 {
   "id": "ciu8s7nq30001jdrm5rz3oylu",
+  "name": "Darth Vader",
   "progress": {
-    "ciu8t6q200002jdrmyi3tpq67": {
+    "deck-id-ciu8t6q200002jdrmyi3tpq67": {
       "started": true,
+      "title": "TIE Fighter API",
       "cards": {
-        "ciu8t7kve0003jdrmimy49c25": {
-          started: true,
-          completed: false
+        "card-id-ciu8t7kve0003jdrmimy49c25": {
+          "title": "Starting the TIE Fighter",
+          "started": true,
+          "completed": false
         }
       }
     }
