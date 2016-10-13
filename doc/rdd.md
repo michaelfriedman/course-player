@@ -20,19 +20,33 @@ A course consists of a series of screens, called cards. A card may contain video
 
 We'll need to maintain some state to keep track of which card decks and which cards have been started and completed by the user.
 
+There will be two sub-object types to keep track of in the progress list:
+
+* Deck progress
+* Card progress
+
+The deck progress type will need to keep track of a list of completed cards from that deck. Other than that, both types share the same properties:
+
+* isStarted: boolean
+* isCompleted: boolean
+* title: string
+
+Storing the names in the object will make it easy to render out the user's progress without needing to query the cards or decks by ID.
+
 ```js
 {
   "id": "ciu8s7nq30001jdrm5rz3oylu",
   "name": "Darth Vader",
   "progress": {
     "deck-id-ciu8t6q200002jdrmyi3tpq67": {
-      "started": true,
+      "isStarted": true,
+      "isCompleted": false,
       "title": "TIE Fighter API",
       "cards": {
         "card-id-ciu8t7kve0003jdrmimy49c25": {
           "title": "Starting the TIE Fighter",
-          "started": true,
-          "completed": false
+          "isStarted": true,
+          "isCompleted": false
         }
       }
     }
