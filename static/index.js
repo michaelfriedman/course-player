@@ -20790,11 +20790,15 @@ exports.default = function (React) {
     var courseTitle = _ref.courseTitle;
     return React.createElement(
       'div',
-      { className: 'nav-bar' },
+      { className: 'card-player' },
       React.createElement(
-        'h1',
-        { className: 'course-title' },
-        courseTitle
+        'div',
+        { className: 'nav-bar' },
+        React.createElement(
+          'h1',
+          { className: 'course-title' },
+          courseTitle
+        )
       )
     );
   };
