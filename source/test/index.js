@@ -13,18 +13,19 @@ const makeProps = settings => Object.assign({}, {
   isCompleted: false,
   cardList: [
     {
-      id: 1,
+      id: '1',
       name: 'Card 1'
     },
     {
-      id: 2,
+      id: '2',
       name: 'Card 2'
     },
     {
-      id: 3,
+      id: '3',
       name: 'Card 3'
     }
-  ]
+  ],
+  currentCardId: '1'
 }, settings);
 
 test('CardPlayer', nest => {
@@ -184,23 +185,23 @@ test('CardPlayer', nest => {
     assert.end();
   });
 
-  nest.test('...card-list', assert => {
-    const msg = 'CardPlayer should render the card-list.';
+  nest.test('...card-list contents', assert => {
+    const msg = 'CardPlayer should render the correct card-list.';
 
     const CardPlayer = cardPlayer(React);
 
     const props = makeProps({
       cardList: [
         {
-          id: 1,
+          id: '1',
           name: 'Card #1'
         },
         {
-          id: 2,
+          id: '2',
           name: 'Card #2'
         },
         {
-          id: 3,
+          id: '3',
           name: 'Card #3'
         }
       ]
@@ -210,7 +211,26 @@ test('CardPlayer', nest => {
     const output = $('.card-list').html();
 
     const actual = output;
-    const expected = '<ul><li>Card #1</li><li>Card #2</li><li>Card #3</li></ul>';
+    const expected = '<li class="card-list-item current-card">Card #1</li><li class="card-list-item">Card #2</li><li class="card-list-item">Card #3</li>';
+
+    assert.equal(actual, expected, msg);
+    assert.end();
+  });
+
+  nest.test('...card-list current card', assert => {
+    const msg = 'CardPlayer should render the current card.';
+
+    const CardPlayer = cardPlayer(React);
+
+    const props = makeProps({
+      currentCardId: '3'
+    });
+
+    const $ = dom.load(render(<CardPlayer {...props} />));
+    const output = $('.card-list').children().last().attr('class');
+
+    const actual = (/current-card/).test(output);
+    const expected = true;
 
     assert.equal(actual, expected, msg);
     assert.end();

@@ -20784,21 +20784,33 @@ module.exports = require('./lib/React');
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+var makeClasses = function makeClasses() {
+  for (var _len = arguments.length, classes = Array(_len), _key = 0; _key < _len; _key++) {
+    classes[_key] = arguments[_key];
+  }
+
+  return classes.join(' ').trim();
+};
 
 exports.default = function (React) {
-  var CardListItem = function CardListItem(card) {
+  var CardListItem = function CardListItem(_ref) {
+    var card = _ref.card,
+        currentCardId = _ref.currentCardId;
     return React.createElement(
       'li',
-      { 'class': 'card-list-item' },
+      { key: card.id,
+        className: makeClasses('card-list-item', card.id === currentCardId ? 'current-card' : '')
+      },
       card.name
     );
   };
 
-  return function (_ref) {
-    var courseTitle = _ref.courseTitle,
-        cardContent = _ref.cardContent,
-        isCompleted = _ref.isCompleted,
-        cardList = _ref.cardList;
+  return function (_ref2) {
+    var courseTitle = _ref2.courseTitle,
+        cardContent = _ref2.cardContent,
+        isCompleted = _ref2.isCompleted,
+        cardList = _ref2.cardList,
+        currentCardId = _ref2.currentCardId;
     return React.createElement(
       'div',
       { className: 'card-player' },
@@ -20848,19 +20860,18 @@ exports.default = function (React) {
           React.createElement('div', { className: 'spacer' }),
           React.createElement(
             'button',
-            { className: 'button', disabled: isCompleted ? '' : 'disabled' },
+            { className: makeClasses('button btn', isCompleted ? 'btn-success' : ''),
+              disabled: isCompleted ? '' : 'disabled' },
             'Continue'
           )
         )
       ),
       React.createElement(
-        'div',
+        'ul',
         { className: 'card-list' },
-        React.createElement(
-          'ul',
-          null,
-          cardList.map(CardListItem)
-        )
+        cardList.map(function (card) {
+          return CardListItem({ card: card, currentCardId: currentCardId });
+        })
       )
     );
   };
