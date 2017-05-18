@@ -20786,10 +20786,19 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 exports.default = function (React) {
+  var CardListItem = function CardListItem(card) {
+    return React.createElement(
+      'li',
+      { 'class': 'card-list-item' },
+      card.name
+    );
+  };
+
   return function (_ref) {
     var courseTitle = _ref.courseTitle,
         cardContent = _ref.cardContent,
-        isCompleted = _ref.isCompleted;
+        isCompleted = _ref.isCompleted,
+        cardList = _ref.cardList;
     return React.createElement(
       'div',
       { className: 'card-player' },
@@ -20850,21 +20859,7 @@ exports.default = function (React) {
         React.createElement(
           'ul',
           null,
-          React.createElement(
-            'li',
-            { className: 'card-list-item currrent-card' },
-            'Card 1'
-          ),
-          React.createElement(
-            'li',
-            { className: 'card-list-item' },
-            'Card 2'
-          ),
-          React.createElement(
-            'li',
-            { className: 'card-list-item' },
-            'Card 3'
-          )
+          cardList.map(CardListItem)
         )
       )
     );
