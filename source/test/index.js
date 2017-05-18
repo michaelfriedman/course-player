@@ -67,25 +67,6 @@ test('CardPlayer', nest => {
     assert.equal(actual, expected, msg);
     assert.end();
   });
-  nest.test('...nav', assert => {
-    const msg = 'CardPlayer should render the nav.';
-
-    const CardPlayer = cardPlayer(React);
-
-    const courseTitle = 'My Course';
-    const props = {
-      courseTitle
-    };
-
-    const $ = dom.load(render(<CardPlayer {...props} />));
-    const output = $('.nav').children().length;
-
-    const actual = output > 0;
-    const expected = true;
-
-    assert.equal(actual, expected, msg);
-    assert.end();
-  });
 
   nest.test('...card-content', assert => {
     const msg = 'CardPlayer should render the card-content.';
@@ -166,6 +147,46 @@ test('CardPlayer', nest => {
 
     const actual = output;
     const expected = undefined;
+
+    assert.equal(actual, expected, msg);
+    assert.end();
+  });
+
+  nest.test('...card-container', assert => {
+    const msg = 'CardPlayer should render the card-container.';
+
+    const CardPlayer = cardPlayer(React);
+
+    const courseTitle = 'My Course';
+    const props = {
+      courseTitle
+    };
+
+    const $ = dom.load(render(<CardPlayer {...props} />));
+    const output = $('.card-container').children().length;
+
+    const actual = output > 0;
+    const expected = true;
+
+    assert.equal(actual, expected, msg);
+    assert.end();
+  });
+
+  nest.test('...card-list', assert => {
+    const msg = 'CardPlayer should render the card-list.';
+
+    const CardPlayer = cardPlayer(React);
+
+    const courseTitle = 'My Course';
+    const props = {
+      courseTitle
+    };
+
+    const $ = dom.load(render(<CardPlayer {...props} />));
+    const output = $('.card-list').children().length;
+
+    const actual = output > 0;
+    const expected = true;
 
     assert.equal(actual, expected, msg);
     assert.end();

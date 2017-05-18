@@ -20827,19 +20827,43 @@ exports.default = function (React) {
       ),
       React.createElement(
         'div',
-        { className: 'card-content' },
-        cardContent
-      ),
-      React.createElement(
-        'div',
-        { className: 'next-card' },
+        { className: 'card-container' },
         React.createElement(
           'div',
-          { className: 'spacer' },
+          { className: 'card-content' },
+          cardContent
+        ),
+        React.createElement(
+          'div',
+          { className: 'next-card' },
+          React.createElement('div', { className: 'spacer' }),
           React.createElement(
             'button',
             { className: 'button', disabled: isCompleted ? '' : 'disabled' },
             'Continue'
+          )
+        )
+      ),
+      React.createElement(
+        'div',
+        { className: 'card-list' },
+        React.createElement(
+          'ul',
+          null,
+          React.createElement(
+            'li',
+            { className: 'card-list-item currrent-card' },
+            'Card 1'
+          ),
+          React.createElement(
+            'li',
+            { className: 'card-list-item' },
+            'Card 2'
+          ),
+          React.createElement(
+            'li',
+            { className: 'card-list-item' },
+            'Card 3'
           )
         )
       )

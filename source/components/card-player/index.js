@@ -10,13 +10,21 @@ export default React => ({ courseTitle, cardContent, isCompleted }) => (
         </select>
       </nav>
     </div>
-    <div className='card-content'>{ cardContent }</div>
-    <div className='next-card'>
-      <div className='spacer'>
+    <div className='card-container'>
+      <div className='card-content'>{ cardContent }</div>
+      <div className='next-card'>
+        <div className='spacer' />
         <button className='button' disabled={isCompleted ? '' : 'disabled'}>
-          Continue
-        </button>
+            Continue
+          </button>
       </div>
+    </div>
+    <div className='card-list'>
+      <ul>
+        <li className='card-list-item currrent-card'>Card 1</li>
+        <li className='card-list-item'>Card 2</li>
+        <li className='card-list-item'>Card 3</li>
+      </ul>
     </div>
   </div>
 );
