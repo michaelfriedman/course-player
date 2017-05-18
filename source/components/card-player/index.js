@@ -11,5 +11,6 @@ export default React => ({ courseTitle, cardContent }) => (
       </nav>
     </div>
     <div className='card-content'>{ cardContent }</div>
+    <div className='next-card'><div className='spacer'><div className='button'>Continue</div></div></div>
   </div>
 );

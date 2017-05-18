@@ -20828,6 +20828,19 @@ exports.default = function (React) {
         'div',
         { className: 'card-content' },
         cardContent
+      ),
+      React.createElement(
+        'div',
+        { className: 'next-card' },
+        React.createElement(
+          'div',
+          { className: 'spacer' },
+          React.createElement(
+            'div',
+            { className: 'button' },
+            'Continue'
+          )
+        )
       )
     );
   };
