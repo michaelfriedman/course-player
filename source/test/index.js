@@ -115,10 +115,8 @@ test('CardPlayer', nest => {
     const CardPlayer = cardPlayer(React);
 
     const courseTitle = 'My Course';
-    const cardContent = 'My content';
     const props = {
-      courseTitle,
-      cardContent
+      courseTitle
     };
 
     const $ = dom.load(render(<CardPlayer {...props} />));
@@ -126,6 +124,48 @@ test('CardPlayer', nest => {
 
     const actual = output > 0;
     const expected = true;
+
+    assert.equal(actual, expected, msg);
+    assert.end();
+  });
+
+  nest.test('...next-card', assert => {
+    const msg = 'next-card should render a disabled button by default.';
+
+    const CardPlayer = cardPlayer(React);
+
+    const courseTitle = 'My Course';
+    const props = {
+      courseTitle,
+      isCompleted: false
+    };
+
+    const $ = dom.load(render(<CardPlayer {...props} />));
+    const output = $('.next-card .button').attr('disabled');
+
+    const actual = output;
+    const expected = 'disabled';
+
+    assert.equal(actual, expected, msg);
+    assert.end();
+  });
+
+  nest.test('...next-card with card completed', assert => {
+    const msg = 'next-card should render a working continue button.';
+
+    const CardPlayer = cardPlayer(React);
+
+    const courseTitle = 'My Course';
+    const props = {
+      courseTitle,
+      isCompleted: true
+    };
+
+    const $ = dom.load(render(<CardPlayer {...props} />));
+    const output = $('.next-card .button').attr('disabled');
+
+    const actual = output;
+    const expected = undefined;
 
     assert.equal(actual, expected, msg);
     assert.end();

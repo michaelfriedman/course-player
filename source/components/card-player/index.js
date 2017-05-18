@@ -1,4 +1,4 @@
-export default React => ({ courseTitle, cardContent }) => (
+export default React => ({ courseTitle, cardContent, isCompleted }) => (
   <div className='card-player'>
     <div className='nav-bar'>
       <h1 className='course-title'>{ courseTitle }</h1>
@@ -11,6 +11,12 @@ export default React => ({ courseTitle, cardContent }) => (
       </nav>
     </div>
     <div className='card-content'>{ cardContent }</div>
-    <div className='next-card'><div className='spacer'><div className='button'>Continue</div></div></div>
+    <div className='next-card'>
+      <div className='spacer'>
+        <button className='button' disabled={isCompleted ? '' : 'disabled'}>
+          Continue
+        </button>
+      </div>
+    </div>
   </div>
 );

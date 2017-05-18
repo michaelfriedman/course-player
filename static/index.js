@@ -20788,7 +20788,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = function (React) {
   return function (_ref) {
     var courseTitle = _ref.courseTitle,
-        cardContent = _ref.cardContent;
+        cardContent = _ref.cardContent,
+        isCompleted = _ref.isCompleted;
     return React.createElement(
       'div',
       { className: 'card-player' },
@@ -20836,8 +20837,8 @@ exports.default = function (React) {
           'div',
           { className: 'spacer' },
           React.createElement(
-            'div',
-            { className: 'button' },
+            'button',
+            { className: 'button', disabled: isCompleted ? '' : 'disabled' },
             'Continue'
           )
         )
