@@ -1,3 +1,5 @@
 export default React => ({ courseTitle }) => (
-  <h1 className='course-title'>{ courseTitle }</h1>
+  <div className='nav-bar'>
+    <h1 className='course-title'>{ courseTitle }</h1>
+  </div>
 );

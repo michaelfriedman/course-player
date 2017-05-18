@@ -8,6 +8,26 @@ const render = reactDom.renderToStaticMarkup;
 import cardPlayer from 'components/card-player';
 
 test('CardPlayer', nest => {
+  nest.test('...nav-bar', assert => {
+    const msg = 'CarPlayer should render the nav-bar.';
+
+    const CardPlayer = cardPlayer(React);
+
+    const courseTitle = 'My Course';
+    const props = {
+      courseTitle
+    };
+
+    const $ = dom.load(render(<CardPlayer {...props} />));
+    const output = $('.nav-bar').children().length;
+
+    const actual = output > 0;
+    const expected = true;
+
+    assert.equal(actual, expected, msg);
+    assert.end();
+  });
+
   nest.test('...course title', assert => {
     const msg = 'CarPlayer should render the course title.';
 

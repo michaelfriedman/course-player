@@ -20789,9 +20789,13 @@ exports.default = function (React) {
   return function (_ref) {
     var courseTitle = _ref.courseTitle;
     return React.createElement(
-      'h1',
-      { className: 'course-title' },
-      courseTitle
+      'div',
+      { className: 'nav-bar' },
+      React.createElement(
+        'h1',
+        { className: 'course-title' },
+        courseTitle
+      )
     );
   };
 };
