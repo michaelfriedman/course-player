@@ -20787,7 +20787,8 @@ Object.defineProperty(exports, "__esModule", {
 
 exports.default = function (React) {
   return function (_ref) {
-    var courseTitle = _ref.courseTitle;
+    var courseTitle = _ref.courseTitle,
+        cardContent = _ref.cardContent;
     return React.createElement(
       'div',
       { className: 'card-player' },
@@ -20798,7 +20799,35 @@ exports.default = function (React) {
           'h1',
           { className: 'course-title' },
           courseTitle
+        ),
+        React.createElement(
+          'nav',
+          { className: 'nav' },
+          React.createElement(
+            'select',
+            { defaultValue: 'Card 1' },
+            React.createElement(
+              'option',
+              { value: 'Card 1' },
+              'Card 1'
+            ),
+            React.createElement(
+              'option',
+              { value: 'Card 2' },
+              'Card 2'
+            ),
+            React.createElement(
+              'option',
+              { value: 'Card 3' },
+              'Card 3'
+            )
+          )
         )
+      ),
+      React.createElement(
+        'div',
+        { className: 'card-content' },
+        cardContent
       )
     );
   };

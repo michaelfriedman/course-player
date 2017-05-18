@@ -67,4 +67,45 @@ test('CardPlayer', nest => {
     assert.equal(actual, expected, msg);
     assert.end();
   });
+  nest.test('...nav', assert => {
+    const msg = 'CardPlayer should render the nav.';
+
+    const CardPlayer = cardPlayer(React);
+
+    const courseTitle = 'My Course';
+    const props = {
+      courseTitle
+    };
+
+    const $ = dom.load(render(<CardPlayer {...props} />));
+    const output = $('.nav').children().length;
+
+    const actual = output > 0;
+    const expected = true;
+
+    assert.equal(actual, expected, msg);
+    assert.end();
+  });
+
+  nest.test('...card-content', assert => {
+    const msg = 'CardPlayer should render the card-content.';
+
+    const CardPlayer = cardPlayer(React);
+
+    const courseTitle = 'My Course';
+    const cardContent = 'My content';
+    const props = {
+      courseTitle,
+      cardContent
+    };
+
+    const $ = dom.load(render(<CardPlayer {...props} />));
+    const output = $('.card-content').html();
+
+    const actual = output;
+    const expected = cardContent;
+
+    assert.equal(actual, expected, msg);
+    assert.end();
+  });
 });
