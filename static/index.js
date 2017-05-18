@@ -557,15 +557,19 @@ module.exports = focusNode;
  *
  * The activeElement will be null only if the document or document body is not
  * yet defined.
+ *
+ * @param {?DOMDocument} doc Defaults to current document.
+ * @return {?DOMElement}
  */
-function getActiveElement() /*?DOMElement*/{
-  if (typeof document === 'undefined') {
+function getActiveElement(doc) /*?DOMElement*/{
+  doc = doc || (typeof document !== 'undefined' ? document : undefined);
+  if (typeof doc === 'undefined') {
     return null;
   }
   try {
-    return document.activeElement || document.body;
+    return doc.activeElement || doc.body;
   } catch (e) {
-    return document.body;
+    return doc.body;
   }
 }
 
@@ -693,10 +697,10 @@ module.exports = getMarkupWrap;
  */
 
 function getUnboundedScrollPosition(scrollable) {
-  if (scrollable === window) {
+  if (scrollable.Window && scrollable instanceof scrollable.Window) {
     return {
-      x: window.pageXOffset || document.documentElement.scrollLeft,
-      y: window.pageYOffset || document.documentElement.scrollTop
+      x: scrollable.pageXOffset || scrollable.document.documentElement.scrollLeft,
+      y: scrollable.pageYOffset || scrollable.document.documentElement.scrollTop
     };
   }
   return {
@@ -803,12 +807,18 @@ module.exports = hyphenateStyleName;
  * will remain to ensure logic does not differ in production.
  */
 
-function invariant(condition, format, a, b, c, d, e, f) {
-  if (process.env.NODE_ENV !== 'production') {
+var validateFormat = function validateFormat(format) {};
+
+if (process.env.NODE_ENV !== 'production') {
+  validateFormat = function validateFormat(format) {
     if (format === undefined) {
       throw new Error('invariant requires an error message argument');
     }
-  }
+  };
+}
+
+function invariant(condition, format, a, b, c, d, e, f) {
+  validateFormat(format);
 
   if (!condition) {
     var error;
@@ -849,7 +859,9 @@ module.exports = invariant;
  * @return {boolean} Whether or not the object is a DOM node.
  */
 function isNode(object) {
-  return !!(object && (typeof Node === 'function' ? object instanceof Node : typeof object === 'object' && typeof object.nodeType === 'number' && typeof object.nodeName === 'string'));
+  var doc = object ? object.ownerDocument || object : document;
+  var defaultView = doc.defaultView || window;
+  return !!(object && (typeof defaultView.Node === 'function' ? object instanceof defaultView.Node : typeof object === 'object' && typeof object.nodeType === 'number' && typeof object.nodeName === 'string'));
 }
 
 module.exports = isNode;
@@ -1188,8 +1200,15 @@ if (process.env.NODE_ENV !== 'production') {
 module.exports = warning;
 }).call(this,require('_process'))
 },{"./emptyFunction":8,"_process":27}],26:[function(require,module,exports){
+/*
+object-assign
+(c) Sindre Sorhus
+@license MIT
+*/
+
 'use strict';
 /* eslint-disable no-unused-vars */
+var getOwnPropertySymbols = Object.getOwnPropertySymbols;
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 var propIsEnumerable = Object.prototype.propertyIsEnumerable;
 
@@ -1210,7 +1229,7 @@ function shouldUseNative() {
 		// Detect buggy property enumeration order in older V8 versions.
 
 		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
-		var test1 = new String('abc');  // eslint-disable-line
+		var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
 		test1[5] = 'de';
 		if (Object.getOwnPropertyNames(test1)[0] === '5') {
 			return false;
@@ -1239,7 +1258,7 @@ function shouldUseNative() {
 		}
 
 		return true;
-	} catch (e) {
+	} catch (err) {
 		// We don't expect any of the above to throw, but better to be safe.
 		return false;
 	}
@@ -1259,8 +1278,8 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 			}
 		}
 
-		if (Object.getOwnPropertySymbols) {
-			symbols = Object.getOwnPropertySymbols(from);
+		if (getOwnPropertySymbols) {
+			symbols = getOwnPropertySymbols(from);
 			for (var i = 0; i < symbols.length; i++) {
 				if (propIsEnumerable.call(from, symbols[i])) {
 					to[symbols[i]] = from[symbols[i]];
@@ -1443,6 +1462,10 @@ process.off = noop;
 process.removeListener = noop;
 process.removeAllListeners = noop;
 process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) { return [] }
 
 process.binding = function (name) {
     throw new Error('process.binding is not supported');
@@ -20761,74 +20784,14 @@ module.exports = require('./lib/React');
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var makeClasses = function makeClasses() {
-  for (var _len = arguments.length, classes = Array(_len), _key = 0; _key < _len; _key++) {
-    classes[_key] = arguments[_key];
-  }
-
-  return classes.filter(function (i) {
-    return Boolean(i);
-  }).join(' ');
-};
 
 exports.default = function (React) {
-
-  var CardListItem = function CardListItem(_ref) {
-    var card = _ref.card;
-    var currentCardId = _ref.currentCardId;
+  return function (_ref) {
+    var courseTitle = _ref.courseTitle;
     return React.createElement(
-      'li',
-      { key: card.id,
-        className: makeClasses('card-list-item', card.id === currentCardId ? 'current-card' : '') },
-      card.name
-    );
-  };
-
-  return function (_ref2) {
-    var courseTitle = _ref2.courseTitle;
-    var cardContent = _ref2.cardContent;
-    var isCompleted = _ref2.isCompleted;
-    var cardList = _ref2.cardList;
-    var currentCardId = _ref2.currentCardId;
-    return React.createElement(
-      'div',
-      { className: 'card-player' },
-      React.createElement(
-        'div',
-        { className: 'nav-bar' },
-        React.createElement(
-          'h1',
-          { className: 'course-title' },
-          courseTitle
-        )
-      ),
-      React.createElement(
-        'div',
-        { className: 'card-container' },
-        React.createElement(
-          'div',
-          { className: 'card-content' },
-          cardContent
-        ),
-        React.createElement(
-          'div',
-          { className: 'next-card' },
-          React.createElement('div', { className: 'spacer' }),
-          React.createElement(
-            'button',
-            { className: makeClasses('button btn', isCompleted ? 'btn-success' : ''),
-              disabled: isCompleted ? '' : 'disabled' },
-            'Continue'
-          )
-        )
-      ),
-      React.createElement(
-        'ul',
-        { className: 'card-list' },
-        cardList.map(function (card) {
-          return CardListItem({ card: card, currentCardId: currentCardId });
-        })
-      )
+      'h1',
+      { className: 'course-title' },
+      courseTitle
     );
   };
 };
